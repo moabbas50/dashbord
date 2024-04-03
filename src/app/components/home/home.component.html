@@ -1,0 +1,110 @@
+<div *ngIf="isLoading" class="container  d-flex justify-content-center mt-5">
+  <h1>Loading...</h1>
+  <app-loding></app-loding>
+</div>
+<div *ngIf="!isLoading" class="main">
+  <div class="container">
+    <!-- header -->
+    <div class="header">
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand">User Dashboard</a>
+
+          <div>
+
+            <input (keyup)="serch(filter)" [(ngModel)]="filter" class="form-control " type="search"
+              placeholder="Search with id" aria-label="Search">
+
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div  class="paginated">
+
+      <div class="card">
+        <p-table class="ui-state-highlight" *ngIf="pool" [value]="userfilter" [paginator]="true" [rows]="3"
+          [showCurrentPageReport]="true" [tableStyle]="{ 'min-width': '20rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 6]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:25%">Id</th>
+              <th style="width:25%">Image</th>
+              <th style="width:25%">Name</th>
+              <th style="width:25%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td>{{ customer.id }}</td>
+              <td><img width="125px" src="{{ customer.avatar }}" alt=""> </td>
+              <td>{{ customer.first_name }} {{customer.last_name }}</td>
+              <td><a routerLink="/user/{{customer.id }}" class="btn btn-info"> view </a></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-table>
+      </div>
+
+
+      <div class="card">
+        <p-table *ngIf="!pool" [value]="users" [paginator]="true" [rows]="3" [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '20rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 6]">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width:25%">Id</th>
+              <th style="width:25%">Image</th>
+              <th style="width:25%">Name</th>
+              <th style="width:25%">Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td>{{ customer.id }}</td>
+              <td><img width="125px" src="{{ customer.avatar }}" alt=""> </td>
+              <td>{{ customer.first_name }} {{customer.last_name }}</td>
+              <td><a routerLink="/user/{{customer.id }}" class="btn btn-info"> view </a></td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="paginatorleft">
+            <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+          </ng-template>
+          <ng-template pTemplate="paginatorright">
+            <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-table>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+
+</div>
